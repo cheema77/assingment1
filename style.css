@@ -1,0 +1,53 @@
+body{
+    background-color: skyblue;
+}
+:root {
+	--active-bg: red;
+	--inactive-bg: darkblue;
+	--switch-bg: #f2f2f2;
+	--width: 100px;
+	--height: calc(var(--width) / 2);
+	--margin: 5px;
+	--transition-time: 0.3s;
+	--border: solid 5px #c2c2c2;
+}
+
+.switch {
+	width: var(--width);
+	height: var(--height);
+	border: var(--border);
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	border-radius: 25% / 50%;
+}
+
+.switch input[type='checkbox'] {
+	display: none;
+}
+
+.switch input[type='checkbox'] + span {
+	background-color: var(--inactive-bg);
+	width: calc(var(--width) + calc(var(--width) / 2));
+	height: var(--height);
+	position: absolute;
+	left: calc(var(--width) * -0.5);
+	transition: var(--transition-time) left ease-out, var(--transition-time) background-color ease-out;
+}
+
+.switch input[type='checkbox'] + span:before {
+	content: '';
+	background-color: var(--switch-bg);
+	width: calc(calc(var(--width) / 2) - calc(var(--margin) * 2));
+	height: calc(var(--height) - calc(var(--margin) * 2));
+	position: absolute;
+	top: var(--margin);
+	left: 50%;
+	border-radius: 50%;
+	transform: translate(-50%);
+}
+
+.switch input[type='checkbox']:checked + span {
+	background-color: var(--active-bg);
+	left: 0;
+}
